@@ -17,14 +17,12 @@ public class Main {
         // variable para guardar el tipo seleccionado
         PetType tipoElegido = null;
 
-        // bucle para pedir el tipo de mascota hasta que sea valido (por eso el null)
+        // bucle para pedir el tipo de mascota hasta que sea valido
         while (tipoElegido == null) {
             // solicitar elegir perro o gato
             System.out.print("Elige el tipo de mascota (perro / gato): ");
             // leer el valor ingresado por teclado
             String entradaTipo = sc.nextLine().trim().toLowerCase();
-            // el trim quita los espacios en blanco por delante y detras 
-            // y el tolowercase basicamente lo convierte a minusculas
 
             // comprobar si escribio perro
             if (entradaTipo.equals("perro") || entradaTipo.equals("dog")) {
@@ -66,6 +64,7 @@ public class Main {
             System.out.println("3. Eat (Comer)");
             System.out.println("4. Shower (Duchar)");
             System.out.println("5. Attack (Atacar)");
+            System.out.println("6. Dance (Bailar)");
             System.out.println("0. Salir");
             System.out.print("Selecciona una opcion: ");
 
@@ -77,28 +76,24 @@ public class Main {
                 case "1":
                     // ejecutar la accion dormir
                     miMascota.dormir();
-                    // mostrar las estadisticas
                     miMascota.mostrarEstado();
                     break;
 
                 case "2":
                     // ejecutar la accion jugar
                     miMascota.jugar();
-                    // mostrar las estadisticas
                     miMascota.mostrarEstado();
                     break;
 
                 case "3":
                     // ejecutar la accion comer
                     miMascota.comer();
-                    // mostrar las estadisticas
                     miMascota.mostrarEstado();
                     break;
 
                 case "4":
                     // ejecutar la accion duchar
                     miMascota.duchar();
-                    // mostrar las estadisticas
                     miMascota.mostrarEstado();
                     break;
 
@@ -107,14 +102,14 @@ public class Main {
                     System.out.print("Cuantas veces quieres atacar al objetivo?: ");
                     int veces = 1;
                     try {
-                        // convertir la respuesta a numero entero tanto integer como parseint ayudan a operar como numeros enteros
+                        // convertir la respuesta a numero entero
                         veces = Integer.parseInt(sc.nextLine().trim());
                     } catch (NumberFormatException e) {
                         // asignar uno si la entrada no es un numero
                         veces = 1;
                     }
 
-                    // comprobar si existe el dummy segun el diagrama
+                    // comprobar si existe el dummy
                     if (dummy == null) {
                         // crear el dummy con stats iniciales a cien
                         dummy = new Mascota("Dummy", PetType.DUMMY);
@@ -141,9 +136,15 @@ public class Main {
                     }
                     break;
 
-                case "0":
                 case "6":
-                    // imprimir el mensaje final segun el diagrama
+                    // ejecutar la nueva accion bailar
+                    miMascota.bailar();
+                    // mostrar las estadisticas actualizadas
+                    miMascota.mostrarEstado();
+                    break;
+
+                case "0":
+                    // imprimir el mensaje final
                     System.out.println("\nGracias por jugar!");
                     // finalizar el bucle
                     jugando = false;
@@ -155,11 +156,11 @@ public class Main {
                     continue;
             }
 
-            // comprobar la regla del diagrama stats a cero o mas de cien
+            // comprobar la regla del diagrama: stats a cero o iguales/superiores a cien
             if (!miMascota.estaViva()) {
                 // imprimir pantalla de game over
                 System.out.println("\nGAME OVER: Tu mascota ha muerto.");
-                // finalmente el juego termina jeje
+                // finalizar el juego
                 jugando = false;
             }
         }

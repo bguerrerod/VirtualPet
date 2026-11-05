@@ -113,6 +113,12 @@ public class Mascota {
         System.out.println(nombre + " se ha tomado una ducha. Higiene: " + higiene + " Energia: " + energia + " Animo: " + animo);
     }
 
+    // metodo nuevo para bailar: reduce diez puntos de energia
+    public void bailar() {
+        System.out.println(nombre + " está bailando un mambo.");
+        this.energia -= 10;
+    }
+
     // metodo para la opcion cinco atacar
     public void atacar(Mascota dummy, int veces) {
         // reproducir animacion de atacar
